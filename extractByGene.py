@@ -5,7 +5,7 @@ geneAlias = {''}
 #load reference sequence of each virus gene.  Return it in a hash keyed by gene.
 #Put the sequence in a list becasue we will add more sequences when samples are loaded.
 def load_ref():
-    ref_file = open("data/refernece_sequence.fasta", "r")
+    ref_file = open("data/reference.fasta", "r")
     line = ref_file.readline()
     gene = ""
     seq_dict = {}
@@ -30,7 +30,8 @@ def load_samples(sequences):
     line = samp_file.readline()
     id = ''
     gene = ''
-    
+    seq_dict = {}
+
     while (line):
         line = line.strip()
         if line.startswith("LOCUS"):
@@ -51,9 +52,12 @@ def load_samples(sequences):
         
         
     seq_dict[gene] = [sequence] 
+    return seq_dict
     
     
 sequences = load_ref()
-load_samples(sequences)
+samples = load_samples(sequences)
 print(sequences['ORF7B'])
+print(sequences.keys())
+print(samples)
 # = open("data/genbank_sequences.gb", "r")
