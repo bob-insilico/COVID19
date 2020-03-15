@@ -20,7 +20,7 @@ yp_genes = {acc: gene
             }
 
 for yp_acc, yp_gene in yp_genes.items():
-    fn = yp_gene.replace('\'','')+'.fa'
+    fn = yp_gene.replace('\'','').replace(' ','-')+'.fa'
     with open(f'gene-fastas/{fn}','w') as wf:
         data_entries = []
         for sid, acc, gene, _ in split_sids(seqs):
